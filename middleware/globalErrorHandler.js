@@ -7,17 +7,11 @@ const globalErrorHandler = (error, req, res, next) => {
     let statusCode = 500;
     let message = "internal server Error"
     let errorMessages = []
-
-
-
     if (error instanceof ApiError) {
-        statusCode = 400;
+        statusCode = error.status;
         message,
             errorMessages = error.message ? [
-                {
-                    path: req.originalUrl,
-                    message: error.message
-                }
+                { path: req.originalUrl, message: error.message }
             ] : []
     } else if (error?.name === "CastError") {
         const structureError = castError(error)
@@ -33,21 +27,14 @@ const globalErrorHandler = (error, req, res, next) => {
         statusCode,
             message,
             errorMessages = [
-                {
-                    path: req.originalUrl,
-                    message: error.message
-                }
-            ]
+                { path: req.originalUrl, message: error.message }]
     }
-
-
     res.status(statusCode).json({
         success: false,
         statusCode,
         message,
         errorMessages,
     })
-
 }
 
 module.exports = globalErrorHandler
