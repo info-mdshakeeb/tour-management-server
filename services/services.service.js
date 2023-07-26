@@ -8,3 +8,11 @@ module.exports.createService = async (payload) => {
     }
     return data
 }
+module.exports.getAllServices = (payload) => {
+    const data = Services.find({}).limit(payload)
+    return data
+}
+module.exports.getAServices = (payload) => {
+    const data = Services.findById(payload)
+    return data
+}

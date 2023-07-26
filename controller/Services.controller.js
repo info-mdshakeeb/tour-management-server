@@ -1,5 +1,4 @@
-const Services = require("../model/Service.model");
-const { createService } = require("../services/services.service");
+const { createService, getAllServices, getAServices } = require("../services/services.service");
 const catchAsync = require("../utils/catchAsync");
 const sandResponse = require("../utils/sandResponse");
 
@@ -16,5 +15,29 @@ module.exports.postServices = catchAsync(
 
         })
 
+    }
+)
+module.exports.getServices = catchAsync(
+    async (req, res) => {
+        const { limit } = req.query
+        const data = await getAllServices(limit)
+        sandResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "successfully get all data",
+            data: data
+        })
+    }
+)
+module.exports.getAService = catchAsync(
+    async (req, res) => {
+        const { id } = req.params
+        const data = await getAServices(id)
+        sandResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "successfully get all data",
+            data: data
+        })
     }
 )
