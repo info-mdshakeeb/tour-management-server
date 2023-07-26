@@ -1,4 +1,4 @@
-module.exports.catchAsync = (fn) => {
+const catchAsync = (fn) => {
     return async (req, res, next) => {
         try {
             await fn(req, res, next)
@@ -7,3 +7,5 @@ module.exports.catchAsync = (fn) => {
         }
     }
 }
+
+module.exports = catchAsync

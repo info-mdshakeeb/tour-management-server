@@ -9,7 +9,7 @@ module.exports = {
         sourceType: 'module',
     },
     rules: {
-        'no-console': 2,
+        'no-console': 1,
         'no-empty': 'off',
         'no-undef': 'off',
         'no-unused-vars': 1
