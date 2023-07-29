@@ -4,6 +4,7 @@ const globalErrorHandler = require('./middleware/globalErrorHandler')
 const noRouteFound = require('./middleware/noRoute')
 const servicesRoute = require('./routes/Services.route')
 const commentRoutes = require('./routes/comment.route')
+const userRoute = require('./routes/user.route')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 })
 
 // routes :
+app.use('/api/v1/user/', userRoute)
 app.use('/api/v1/services/', servicesRoute)
 app.use('/api/v1/comments/', commentRoutes)
 

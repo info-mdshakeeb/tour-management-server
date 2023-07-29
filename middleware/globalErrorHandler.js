@@ -2,6 +2,7 @@ const ApiError = require("../errors/ApiError");
 const ValidationError = require("../errors/ValidationError");
 const castError = require("../errors/castError");
 
+// eslint-disable-next-line no-unused-vars
 const globalErrorHandler = (error, req, res, next) => {
 
     let statusCode = 500;
@@ -34,6 +35,7 @@ const globalErrorHandler = (error, req, res, next) => {
         statusCode,
         message,
         errorMessages,
+        stack: error.stack
     })
 }
 
