@@ -1,11 +1,23 @@
 const Booking = require("../model/booking.modal")
 
 const createBooking = async (payload) => {
-    const data = await Booking.create(payload)
-    if (!data) {
-        throw new Error('booking is not created')
+
+    const { userId, tourId, date, person } = payload
+
+    // if the booking is same date and same tour increase the person
+    const isExist = await Booking.findOne({ tourId, date, userId })
+    if (!isExist) {
+        const data = await Booking.create(payload)
+        if (!data) {
+            throw new Error('booking is not created')
+        }
+        return data
+    } else {
+
+        const data = await Booking.updateOne({ tourId, date, userId }, { person: isExist.person + Number(person) })
+        return data
     }
-    return data
+
 }
 const getBookingsByUserId = async (id) => {
     const data = await Booking.find({ userId: id })

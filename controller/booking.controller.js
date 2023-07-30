@@ -18,7 +18,7 @@ const bookingsByUserId = catchAsync(
         const data = await getBookingsByUserId(id)
         sandResponse(res, {
             statusCode: 200,
-            message: "create booking successfully",
+            message: "get booking successfully",
             data: data
         })
 
