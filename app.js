@@ -5,12 +5,12 @@ const noRouteFound = require('./middleware/noRoute')
 const servicesRoute = require('./routes/Services.route')
 const commentRoutes = require('./routes/comment.route')
 const userRoute = require('./routes/user.route')
+const bookingRoute = require('./routes/booking.route')
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-
 
 // basic text :
 app.get('/', (req, res) => {
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/user/', userRoute)
 app.use('/api/v1/services/', servicesRoute)
 app.use('/api/v1/comments/', commentRoutes)
+app.use('/api/v1/services/', bookingRoute)
 
 app.use(globalErrorHandler)
 app.use(noRouteFound)

@@ -24,10 +24,11 @@ const users = catchAsync(
 )
 const user = catchAsync(
     async (req, res) => {
-        const data = await userServices.getUser()
+        const { id } = req.params
+        const data = await userServices.getUser(id)
         sandResponse(res, {
             statusCode: 200,
-            message: "user created successfully",
+            message: "user find successfully",
             data: data
         })
     }
