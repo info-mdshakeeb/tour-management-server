@@ -13,16 +13,22 @@ const createBooking = async (payload) => {
         }
         return data
     } else {
-
         const data = await Booking.updateOne({ tourId, date, userId }, { person: isExist.person + Number(person) })
         return data
     }
 
 }
 const getBookingsByUserId = async (id) => {
-    const data = await Booking.find({ userId: id })
+    const data = await Booking.find({ userId: id }).sort({ createdAt: -1 })
     return data
 }
+
+const deleteBooking = async (id) => {
+    const data = await Booking.findByIdAndDelete(id)
+    return data
+}
+
+
 module.exports = {
-    createBooking, getBookingsByUserId
+    createBooking, getBookingsByUserId, deleteBooking
 }

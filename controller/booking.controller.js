@@ -1,4 +1,4 @@
-const { createBooking, getBookingsByUserId } = require("../services/booking.service");
+const { createBooking, getBookingsByUserId, deleteBooking } = require("../services/booking.service");
 const catchAsync = require("../utils/catchAsync");
 const sandResponse = require("../utils/sandResponse");
 
@@ -24,7 +24,23 @@ const bookingsByUserId = catchAsync(
 
     }
 )
+
+const bookingDelete = catchAsync(
+    async (req, res) => {
+        const { id } = req.params
+        const data = await deleteBooking(id)
+        sandResponse(res, {
+            statusCode: 200,
+            message: "delete booking successfully",
+            data: data
+        })
+
+    }
+)
+
+
 module.exports = {
     addBooking,
-    bookingsByUserId
+    bookingsByUserId,
+    bookingDelete
 }
