@@ -46,7 +46,7 @@ module.exports.searchServices = catchAsync(
             statusCode: 200,
             success: true,
             message: "successfully get  data",
-            data: "ss"
+            data: data
         })
     }
 )
