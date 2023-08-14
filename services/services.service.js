@@ -15,6 +15,13 @@ module.exports.getAllServices = async (payload) => {
 
 module.exports.searchServices = async (payload) => {
 
+    console.log(payload);
+
+
+    if (!payload.city && !payload.distance) {
+        const data = await Services.find({})
+        return data
+    }
     if (payload.city && payload.distance) {
         const data = await Services.find({
             $and: [
