@@ -12,6 +12,20 @@ module.exports.getAllServices = async (payload) => {
     const data = await Services.find({}).limit(payload)
     return data
 }
+
+module.exports.searchServices = async (payload) => {
+    // /services/search?destination=${destination}&location=${location}
+    const { destination, location } = payload
+    const data = await Services.find({
+        $or: [
+            { city: { $regex: location, $options: 'i' } },
+            { distance: { $regex: destination, $options: 'i' } }
+        ]
+    })
+    return data
+}
+
+
 module.exports.getAServices = (payload) => {
     const data = Services.findById(payload)
     return data

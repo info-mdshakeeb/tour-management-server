@@ -1,4 +1,4 @@
-const { createService, getAllServices, getAServices } = require("../services/services.service");
+const { createService, getAllServices, getAServices, searchServices } = require("../services/services.service");
 const catchAsync = require("../utils/catchAsync");
 const sandResponse = require("../utils/sandResponse");
 
@@ -12,9 +12,7 @@ module.exports.postServices = catchAsync(
             success: true,
             message: "Service create successfully",
             data: data
-
         })
-
     }
 )
 module.exports.getServices = catchAsync(
@@ -38,6 +36,17 @@ module.exports.getAService = catchAsync(
             success: true,
             message: "successfully get all data",
             data: data
+        })
+    }
+)
+module.exports.searchServices = catchAsync(
+    async (req, res) => {
+        const data = await searchServices(req.query)
+        sandResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "successfully get  data",
+            data: "ss"
         })
     }
 )

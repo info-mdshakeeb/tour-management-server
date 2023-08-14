@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/user/', userRoute)
 app.use('/api/v1/services/', servicesRoute)
 app.use('/api/v1/comments/', commentRoutes)
-app.use('/api/v1/services/', bookingRoute)
+app.use('/api/v1/booking/', bookingRoute)
 app.use('/api/v1/payment/', paymentRoute)
 
 app.use(globalErrorHandler)
