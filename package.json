@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node index.js",
+    "start": "node server.js",
     "lint": "eslint . --ext .js,.ts",
     "pre:format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint_pre": "yarn lint"
